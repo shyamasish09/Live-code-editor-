@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>HTML</title>
+  
+  <!-- HTML -->
+  
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>Live HTML / CSS / JS [code editor]</header>
+<main>
+    <div class="editor">
+        <div class="label">HTML</div>
+        <textarea id="htmlCode" placeholder="Type HTML here..."><h1>Hello World</h1></textarea>
+    </div>
+    <div class="editor">
+        <div class="label">CSS</div>
+        <textarea id="cssCode" placeholder="Type CSS here...">h1 { color: red; }</textarea>
+    </div>
+    <div class="editor">
+        <div class="label">JS</div>
+        <textarea id="jsCode" placeholder="Type JavaScript here...">console.log('Hello from JS');</textarea>
+    </div>
+    <iframe id="preview"></iframe>
+</main>
+
+<script>
+function updatePreview() {
+    const html = document.getElementById("htmlCode").value;
+    const css = "<style>" + document.getElementById("cssCode").value + "</style>";
+    const js = "<script>" + document.getElementById("jsCode").value + "<\/script>";
+    const previewFrame = document.getElementById("preview").contentWindow.document;
+    previewFrame.open();
+    previewFrame.write(html + css + js);
+    previewFrame.close();
+}
+
+document.querySelectorAll("textarea").forEach(area => {
+    area.addEventListener("input", updatePreview);
+});
+
+updatePreview();
+</script>
+</body>
+
+</html>
